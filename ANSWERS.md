@@ -3,7 +3,7 @@
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
-      Routing to have cleaner more organized code & it makes things easier than just writing out a small API in just plain Node.
+      Routing to have cleaner more organized code & Middleware.
 
 - [ ] Describe Middleware?
       Metaphorically speaking it's like the mechanical arms on the side of the conveyor belt that have specific times and functions to execute.
