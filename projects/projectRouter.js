@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Projects = require('../data/helpers/projectModel');
+const Projects = require('../data/helpers/projectModel.js');
+const Actions = require('../data/helpers/actionModel.js');
 
 router.get(`/`, (req, res) => {
   Projects.get()
@@ -14,7 +15,7 @@ router.get(`/`, (req, res) => {
 });
 
 router.get(`/:id`, (req, res) => {
-  Projects.getById(req.params.id)
+  Projects.get(req.params.id)
     .then(proj => {
       if (proj) {
         res.status(200).json(proj);
@@ -50,7 +51,22 @@ router.put(`/:id`, (req, res) => {
     });
 });
 
-router.post(`/`, (req, res) => {
+router.post('/:id/actions', (req, res) => {
+  const task = req.body;
+  const projId = req.params.id;
+  task.project_id = projId;
+
+  Actions.insert(task)
+    .then(action => {
+      res.status(200).json(action);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ errorMsg: 'Could not add task' });
+    });
+});
+
+router.post('/', (req, res) => {
   Projects.insert(req.body)
     .then(proj => {
       res.status(200).json(proj);

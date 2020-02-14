@@ -14,7 +14,7 @@ router.get(`/`, (req, res) => {
 });
 
 router.get(`/:id`, (req, res) => {
-  Actions.getById(req.params.id).then(action => {
+  Actions.get(req.params.id).then(action => {
     if (action) {
       res.status(200).json(action);
     } else {
@@ -48,9 +48,10 @@ router.put(`/:id`, (req, res) => {
 });
 
 router.post(`/`, (req, res) => {
-  Actions.insert(req.body)
+  const content = req.body;
+  Actions.insert(content)
     .then(action => {
-      res.status(200).json(action);
+      res.status(201).json(action);
     })
     .catch(err => {
       console.log(err);
